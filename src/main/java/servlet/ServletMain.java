@@ -28,8 +28,8 @@ public class ServletMain extends HttpServlet {
 
         req.setAttribute("nome_user", tmp.nomeUtenteGET());
         System.out.println(tmp.nomeUtenteGET());
-        tmp.saveCombination();
         tmp.creaMaster();
+        tmp.saveCombination();
         req.getRequestDispatcher("/jsp/gioco.jsp").forward(req,resp);
     }
 

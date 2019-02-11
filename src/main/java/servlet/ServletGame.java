@@ -69,7 +69,6 @@ public class ServletGame extends HttpServlet {
                 req.getRequestDispatcher("/jsp/perso.jsp").forward(req, resp);
                 tmp.setTentativi(10);
                 destroy();
-
             }
         } catch (Exception e) {
             System.out.println(e.toString());
