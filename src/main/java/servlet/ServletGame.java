@@ -61,7 +61,7 @@ public class ServletGame extends HttpServlet {
                 if (pos.equals("3")) {
                     req.getRequestDispatcher("/jsp/risultato.jsp").forward(req, resp);
                     tmp.setTentativi(10);
-                    destroy();talia
+                    destroy();
                 } else
                     req.getRequestDispatcher("/jsp/gioco.jsp").forward(req, resp);
             }
