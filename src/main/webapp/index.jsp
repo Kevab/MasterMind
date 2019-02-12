@@ -1,3 +1,4 @@
+<%@ page import="com.mysql.cj.Session" %>
 <%@ page language="java"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
     <form action="ServletMain" method="post">
         <h1>Benvenuto in MasterMind</h1>
         <label>Come ti chiami?</label>
-        <input id="nome_user" name="nome_user" value=""> <br>
+        <input id="nome_user" name="nome_user" value= "<%=session.getAttribute("userNome")%>"> <br>
         <input type="submit">
     </form>
 

@@ -10,10 +10,9 @@
 </head>
 <body>
 
-<h1>Benvenuto <%= request.getParameter("nome_user")%> in MasterMIND!</h1>
+<h1>Benvenuto <%= session.getAttribute("userNome") %> in MasterMIND!</h1>
 <h2>Il gioco abbia inizio: Trova la combinazione segreta</h2>
-
-<form action="ServletGame" method="post">
+    <form action="ServletGame" method="post">
     <p>
         <input style="background-color: cornflowerblue" id="tent_num1" type="number" min="0" max="9"  name="tent_num1" value="0"> <br>
         <input style="background-color: coral" id="tent_num2" type="number" min="0" max="9"  name="tent_num2" value="0"> <br>

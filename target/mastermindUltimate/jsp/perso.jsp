@@ -9,7 +9,7 @@
     <title>Sconfitta</title>
 </head>
 <body>
-    <h1>Hai perso <%request.getParameter("user_name"); %> </h1> <br>
+    <h1>Hai perso <%= session.getAttribute("userNome")%> </h1> <br>
         <form action="/mastermindUltimate_war_exploded/index.jsp" method="post">
             <input type="submit" value="Rigioca">
         </form>

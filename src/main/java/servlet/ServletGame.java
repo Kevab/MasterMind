@@ -20,10 +20,12 @@ public class ServletGame extends HttpServlet {
     public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
         GameController tmp = Context.getInstance().getGameController();
 
+
         String tent1 = req.getParameter("tent_num1");
         String tent2 = req.getParameter("tent_num2");
         String tent3 = req.getParameter("tent_num3");
         ArrayList<Integer> master = tmp.masterArrList;
+
         for (int n : master)
             System.out.print("Master " + n + " - ");
 
@@ -53,6 +55,7 @@ public class ServletGame extends HttpServlet {
                 req.setAttribute("pos_n", pos);
                 req.setAttribute("giu_n", giu);
                 req.setAttribute("tent", k);
+
                 k--;
                 tmp.setTentativi(k);
 

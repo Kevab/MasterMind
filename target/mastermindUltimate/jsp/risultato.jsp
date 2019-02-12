@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Hai vinto</h1>
-<p>Nome: <%request.getParameter("user_name"); %> <br>
+<p>Nome: <%= session.getAttribute("userNome")%> <br>
     <%= request.getParameter("tent_num1")%>
     <%= request.getParameter("tent_num2")%>
     <%= request.getParameter("tent_num3")%>
