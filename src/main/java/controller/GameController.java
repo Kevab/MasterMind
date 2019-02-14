@@ -35,6 +35,10 @@ public class GameController {
         this.masterArrList = combServ.generaMaster();
     }
 
+//    public void creaMasterColori() {
+//        this.masterArrList = combServ.generaMasterColor();
+//    }
+
     public int getTentativi() {
         return tentativi;
     }

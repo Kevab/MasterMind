@@ -2,6 +2,7 @@ package services;
 
 import model.ModelCombination;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ServiceCombination extends ServiceAbstract {
@@ -10,14 +11,13 @@ public class ServiceCombination extends ServiceAbstract {
     public String username;
 
 
-//Costruttore
-    public ServiceCombination(ModelCombination combModel)
-    {
+    //Costruttore
+    public ServiceCombination(ModelCombination combModel) {
         this.combModel = combModel;
     }
 
-//Crea il master
-    public ArrayList<Integer> generaMaster()    {
+
+    public ArrayList<Integer> generaMaster() {
         ArrayList<Integer> mastRandom = new ArrayList<>();
         mastRandom.add((int) (Math.random() * 10));
         mastRandom.add((int) (Math.random() * 10));
@@ -33,43 +33,43 @@ public class ServiceCombination extends ServiceAbstract {
         return this.username = username;
     }
 
-    public int[] doCheck(ArrayList<Integer> master, ArrayList<Integer> user)    {
+    public int[] doCheck(ArrayList<Integer> master, ArrayList<Integer> user) {
         //Controllo se l'utente ha vinto confrontando i 2 vettori
-            if (!master.equals(user)) {
-                int[] tempListFinale;
-                ArrayList<Integer> masterLIst = new ArrayList<Integer>(master);
-                ArrayList<Integer> userLIst = new ArrayList<Integer>(user);
+        if (!master.equals(user)) {
+            int[] tempListFinale;
+            ArrayList<Integer> masterLIst = new ArrayList<Integer>(master);
+            ArrayList<Integer> userLIst = new ArrayList<Integer>(user);
 
-                //Mi servirà per verificare quali numeri ho già controllato
-                ArrayList<Integer> tempList = new ArrayList<Integer>();
-                ArrayList<Boolean> boolList = new ArrayList<Boolean>();
-                boolList.add(false);
-                boolList.add(false);
-                boolList.add(false);
+            //Mi servirà per verificare quali numeri ho già controllato
+            ArrayList<Integer> tempList = new ArrayList<Integer>();
+            ArrayList<Boolean> boolList = new ArrayList<Boolean>();
+            boolList.add(false);
+            boolList.add(false);
+            boolList.add(false);
 
-                //Ciclo sul master e controllo i numeri dell'utente
-                //Se il numero è uguale lo sostituisco nel mio array provvisorio
-                //Metto un 10 al posto del numero uguale
-                //La lista booleana si aggiorna quando ottengo il MATCH dei valori
-                for (int i = 0; i < masterLIst.size(); i++) {
-                    if (masterLIst.get(i) == userLIst.get(i)) {
-                        tempList.add(10);
-                        boolList.set(i, true);
-                    }
-                    //Altrimenti aggiungo il numero dell'utente all'array temporaneo
-                    else
-                        tempList.add(userLIst.get(i));
+            //Ciclo sul master e controllo i numeri dell'utente
+            //Se il numero è uguale lo sostituisco nel mio array provvisorio
+            //Metto un 10 al posto del numero uguale
+            //La lista booleana si aggiorna quando ottengo il MATCH dei valori
+            for (int i = 0; i < masterLIst.size(); i++) {
+                if (masterLIst.get(i) == userLIst.get(i)) {
+                    tempList.add(10);
+                    boolList.set(i, true);
                 }
+                //Altrimenti aggiungo il numero dell'utente all'array temporaneo
+                else
+                    tempList.add(userLIst.get(i));
+            }
 
-                //Passo il master, il nuovo array e la lista di bool al metodo finale
-                tempListFinale = confronta(masterLIst, tempList, boolList);
-                return tempListFinale;
-            }
-            //Se entro qui l'utente ha vinto
-            else {
-                int[] vittoria = new int[]{3, 0};
-                return vittoria;
-            }
+            //Passo il master, il nuovo array e la lista di bool al metodo finale
+            tempListFinale = confronta(masterLIst, tempList, boolList);
+            return tempListFinale;
+        }
+        //Se entro qui l'utente ha vinto
+        else {
+            int[] vittoria = new int[]{3, 0};
+            return vittoria;
+        }
 
     }
 
@@ -81,7 +81,7 @@ public class ServiceCombination extends ServiceAbstract {
         int[] confrontoPosizione;
 
         for (int i = 0; i < masterLIst.size(); i++) {
-            if(boolList.get(i).equals(false)) {
+            if (boolList.get(i).equals(false)) {
                 for (int k = 0; k < tempList.size(); k++) {
                     if (masterLIst.get(i).equals((tempList.get(k)))) {
                         tempList.remove(k);
@@ -110,10 +110,9 @@ public class ServiceCombination extends ServiceAbstract {
         return confrontoPosizione;
     }
 
-    public void saveComb(ArrayList<Integer> master, String username)
-    {
+    public void saveComb(ArrayList<Integer> master, String username) {
         combModel.creaTabellaComb();
-        combModel.inserisciComb(myArrayListToString(master),username);
+        combModel.inserisciComb(myArrayListToString(master), username);
     }
 
 }

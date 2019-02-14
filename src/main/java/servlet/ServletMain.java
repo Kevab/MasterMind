@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet("/ServletMain")
 public class ServletMain extends HttpServlet {
@@ -31,9 +32,22 @@ public class ServletMain extends HttpServlet {
         session.setAttribute("userNome", userNome);
         req.setAttribute("nome_user", tmp.nomeUtenteGET());
         System.out.println(tmp.nomeUtenteGET());
-        tmp.creaMaster();
-        tmp.saveCombination();
-        req.getRequestDispatcher("/jsp/gioco.jsp").forward(req,resp);
+
+        //Colori aggiunte
+        int scegliere = Integer.parseInt(req.getParameter("scelta"));
+        session.setAttribute("sceltaColNum", scegliere);
+        System.out.println(scegliere);
+
+        if (scegliere == 0) {
+           // tmp.creaMasterColori();
+            req.getRequestDispatcher("/jsp/gioco.jsp").forward(req, resp);
+        } else {
+
+
+            tmp.creaMaster();
+            tmp.saveCombination();
+            req.getRequestDispatcher("/jsp/gioco.jsp").forward(req, resp);
+        }
     }
 
 }
