@@ -18,10 +18,6 @@
         <h1>Benvenuto in MasterMind</h1>
         <label>Come ti chiami?</label>
         <input id="nome_user" name="nome_user" value= "<%=session.getAttribute("userNome")%>"> <br>
-
-        <h3>Vuoi giocare con i colori o con i numeri?</h3>
-        SI = 0 oppure NO = 1
-        <input id="scelta" name="scelta" pattern=[0-1]{1} value= "<%=session.getAttribute("sceltaColNum")%>"> <br>
         <input type="submit">
     </form>
 

@@ -1,7 +1,7 @@
 package controller;
 
-import model.ModelCombination;
-import model.ModelTry;
+import model.CombinationRepository;
+import model.TryRepository;
 import services.ServiceCombination;
 import services.ServiceTry;
 
@@ -10,7 +10,8 @@ public class Context {
 
     //Variabile per singleton
     private static Context istanzaContesto;
-    private GameController controller;
+    private GameController gameController;
+    private ClassificaController classificaController;
 
     public static Context getInstance() {
         if (istanzaContesto == null) {
@@ -20,16 +21,22 @@ public class Context {
         return istanzaContesto;
     }
 
+
+
     private Context() {
-        ModelCombination modelCombination = new ModelCombination();
-        ModelTry modelTry= new ModelTry();
-        ServiceCombination serviceCombination = new ServiceCombination(modelCombination);
-        ServiceTry tryService=new ServiceTry(modelTry);
-        this.controller = new GameController(serviceCombination, tryService);
+        CombinationRepository combinationRepository = new CombinationRepository();
+        TryRepository tryRepository = new TryRepository();
+        ServiceCombination serviceCombination = new ServiceCombination(combinationRepository);
+        ServiceTry tryService=new ServiceTry(tryRepository);
+        this.gameController = new GameController(serviceCombination, tryService);
+        this.classificaController = new ClassificaController(serviceCombination,tryService);
     }
 
     public GameController getGameController(){
-        return this.controller;
+        return this.gameController;
     }
 
+    public ClassificaController getClassificaController() {
+        return classificaController;
+    }
 }

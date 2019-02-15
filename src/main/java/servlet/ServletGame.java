@@ -21,6 +21,7 @@ public class ServletGame extends HttpServlet {
         GameController tmp = Context.getInstance().getGameController();
 
 
+
         String tent1 = req.getParameter("tent_num1");
         String tent2 = req.getParameter("tent_num2");
         String tent3 = req.getParameter("tent_num3");

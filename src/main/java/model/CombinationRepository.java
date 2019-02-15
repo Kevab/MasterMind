@@ -1,9 +1,12 @@
 package model;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-public class ModelCombination extends ModelAbstract {
+//BUSINESS OBJECT
+public class CombinationRepository extends ModelAbstract {
     //Salva la combinazione MASTER nel Database
     //Controllo se la tabella Combinazione esiste
 //Se non esiste la creo (id_comb, username, data, master_comb)
@@ -19,7 +22,7 @@ public class ModelCombination extends ModelAbstract {
         }
     }
 
-//Si differenzia per la query INSERT che agisce sulla tabella Combinazione
+    //Si differenzia per la query INSERT che agisce sulla tabella Combinazione
     public void inserisciComb(String vett_master, String username) {
         try {
             // SQL statement for creating a new table
@@ -33,37 +36,39 @@ public class ModelCombination extends ModelAbstract {
         }
     }
 
-//Fa una semplice SELECT di tutto ciò che è in tabella
-    public void leggiComb() {
+    //Fa una semplice SELECT di tutto ciò che è in tabella
+    public ArrayList<CombinationModel> findAllCombinationComb() {
         try {
             // SQL statement for creating a new table
             String sql = "SELECT * FROM Combinazione;";
 
             Statement stmp = super.statementMetodo();
             ResultSet rs = stmp.executeQuery(sql);
-            //STEP 5: Extract data from result set
-            while (rs.next())
-            {
-                //Retrieve by column name
-                int id = rs.getInt("id_comb");
-                String username1 = rs.getString("username");
-                String data = rs.getString("data");
-                String vett_master = rs.getString("master_comb");
-
-
-                //Display values
-                System.out.println("\nCombinazione:\n");
-                System.out.print("ID: " + id);
-                System.out.print(", username1: " + username1);
-                System.out.print(", data: " + data);
-                System.out.print(", master_comb: " + vett_master + "\n\n");
-            }
-            super.pulisciAmbiente(stmp, rs);
-
+            return converToModel(rs);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-}
+    //Mette la tabella in un ArrayList
+    private ArrayList<CombinationModel> converToModel(ResultSet resultSet) {
 
+        try {
+            ArrayList<CombinationModel> listaModelli = new ArrayList<>();
+
+            while (resultSet.next()) {
+                CombinationModel modello = new CombinationModel();
+                modello.setId(resultSet.getInt(0));
+                modello.setNome(resultSet.getString(1));
+                modello.setData(resultSet.getDate(2));
+                modello.setMaster(resultSet.getString(3));
+                listaModelli.add(modello);
+            }
+            return listaModelli;
+        } catch (SQLException exSQL) {
+            exSQL.getErrorCode();
+            return null;
+        }
+    }
+}

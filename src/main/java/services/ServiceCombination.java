@@ -1,21 +1,17 @@
 package services;
 
-import model.ModelCombination;
-
-import java.awt.*;
+import model.CombinationRepository;
 import java.util.ArrayList;
 
 public class ServiceCombination extends ServiceAbstract {
 
-    private ModelCombination combModel;
+    private CombinationRepository combModel;
     public String username;
 
-
     //Costruttore
-    public ServiceCombination(ModelCombination combModel) {
+    public ServiceCombination(CombinationRepository combModel) {
         this.combModel = combModel;
     }
-
 
     public ArrayList<Integer> generaMaster() {
         ArrayList<Integer> mastRandom = new ArrayList<>();
